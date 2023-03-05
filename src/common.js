@@ -32,7 +32,6 @@ export function search(matrix, finishRow, finishCol, row, col, elm = {sumWeight:
   if ( matrix[row] == undefined || matrix[row][col] == undefined || matrix[row][col].weight < 1 ) return matrix;
 
   let currentSumWeight = matrix[row][col].sumWeight();
-  console.log('['+row+']['+col+']-'+currentSumWeight);
 
   if (currentSumWeight > 0 && currentSumWeight <= elm.sumWeight() + parseInt(matrix[row][col].weight) ){ 
     // check if we should replace branch
@@ -59,19 +58,3 @@ export function search(matrix, finishRow, finishCol, row, col, elm = {sumWeight:
   return matrix;
 }
 
-export function clearMatrix(matrix){
-
-    let col = 0;
-    let row = 0;
-    while(matrix[row] !== undefined && matrix[row][col] !== undefined){
-      while(matrix[row] !== undefined && matrix[row][col] !== undefined){
-        matrix[row][col].sumWeight = function(){return 0};
-        matrix[row][col].prevElm = null;
-        col++;
-      }
-      row++;
-      col = 0;
-    }
-
-    return matrix;
-}
